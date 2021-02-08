@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  crawler-golang:
+    build:
+      context: .
+    container_name: go-crawler
+    restart: always
+     ports:
+       - 80:80
+    working_dir: /go-crawler
+    volumes:
+      - .:/go-crawle
+#    labels:
+#      - "traefik.http.routers.crawler-golang.rule=Host(`crawler.local.com`)"
+#      - "traefik.http.services.crawler-golang.loadbalancer.server.port=8080"
+    networks:
+      - web_service
+    command: "fresh runner.conf"
+networks:
+  web_service:
+    external: true
