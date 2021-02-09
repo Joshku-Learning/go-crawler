@@ -6,8 +6,8 @@ services:
       context: .
     container_name: go-crawler
     restart: always
-     ports:
-       - 80:80
+    ports:
+    - 80:80
     working_dir: /go-crawler
     volumes:
       - .:/go-crawle
