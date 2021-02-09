@@ -13,24 +13,26 @@ func main() {
 	fmt.Println("start crawler...")
 
 	c := cron.New()
-	c.AddFunc("*0 0 0 * * *", func() {
-		SendNotify()
+	c.AddFunc("0 0 0 1 1 *", func() {
+		SendNotify("test")
 	})
 	c.Start()
 	r := gin.Default()
 
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/message/:data", func(c *gin.Context) {
+		req := c.Param("data")
+		str := SendNotify(req)
 		c.JSON(200, gin.H{
-			"message": "test",
+			"message": str,
 		})
 	})
 	r.Run(":8088")
 
 }
-func SendNotify() (str string) {
+func SendNotify(req string) (str string) {
 	url := "https://notify-api.line.me/api/notify"
 	queries := map[string]string{
-		"message": "test",
+		"message": req,
 	}
 	post := map[string]interface{}{}
 	str, err := HttpPost(url, queries, post)
