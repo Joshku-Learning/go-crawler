@@ -7,10 +7,10 @@ services:
     container_name: go-crawler
     restart: always
     ports:
-    - 80:80
+    - 8088:8088
     working_dir: /go-crawler
     volumes:
-      - .:/go-crawle
+      - .:/go-crawler
 #    labels:
 #      - "traefik.http.routers.crawler-golang.rule=Host(`crawler.local.com`)"
 #      - "traefik.http.services.crawler-golang.loadbalancer.server.port=8080"
