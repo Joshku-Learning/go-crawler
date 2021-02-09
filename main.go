@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("start crawler...")
 
 	c := cron.New()
-	c.AddFunc("*/10 * * * * *", func() {
+	c.AddFunc("*0 0 0 * * *", func() {
 		SendNotify()
 	})
 	c.Start()
